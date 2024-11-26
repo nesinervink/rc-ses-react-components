@@ -1,54 +1,90 @@
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { Meta, StoryContext, StoryFn } from '@storybook/react'
+import { lt } from 'date-fns/locale/lt'
+import { useForm } from 'react-hook-form'
 
 import RcSesDatepicker from '@/components/form/inputs/Datepicker'
-import FieldPreviewRow from '@/components/storybook/FieldPreviewRow'
 import FieldView from '@/components/storybook/FieldView'
 import Fields from '@/components/storybook/Fields'
-import PreviewTitle from '@/components/storybook/PreviewTitle'
+import SingleStepFormModel from '@/examples/SingleStepForm/types/SingleStepFormModel'
 
 const meta: Meta<typeof RcSesDatepicker> = {
   title: 'components/common/inputs/DatePicker',
   component: RcSesDatepicker,
+  argTypes: {
+    clearable: {
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        defaultValue: {},
+      },
+    },
+  },
   tags: ['autodocs'],
 }
 
 export default meta
 
-const Template: StoryFn<typeof RcSesDatepicker> = (args) => (
-  <Fields>
-    <FieldView>{/* <RcSesTextField {...args} /> */}</FieldView>
+const Template: StoryFn<typeof RcSesDatepicker> = (args) => {
+  const { clearable, label, rules } = args
 
-    <FieldPreviewRow>
-      {/* <PreviewTitle>State previews label on side</PreviewTitle>
-      <RcSesTextField label='Label' />
-      <RcSesTextField
-        errors={{ message: 'Klaidos pranešimas', type: 'required' }}
-        label='Label'
-      />
-      <RcSesTextField disabled label='Label' /> */}
-    </FieldPreviewRow>
+  const {
+    control,
+    formState: { errors },
+  } = useForm<SingleStepFormModel>({
+    mode: 'all',
+    defaultValues: {
+      date: null,
+    },
+  })
 
-    <FieldPreviewRow>
-      <PreviewTitle>State previews label on top</PreviewTitle>
-    </FieldPreviewRow>
-  </Fields>
-)
-
+  return (
+    <Fields>
+      <FieldView>
+        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={lt}>
+          <RcSesDatepicker
+            id='date'
+            name='date'
+            clearable={clearable}
+            control={control}
+            rules={rules}
+            label={label}
+            errors={errors?.date}
+          />
+        </LocalizationProvider>
+      </FieldView>
+    </Fields>
+  )
+}
 const codeBlock = (args: any) => {
-  const { slotProps, disabled, label } = args
+  const { clearable, label, rules } = args
   return `
-  import RcSesTextField from '@/components/form/inputs/TextField'
-
+  import RcSesDatepicker from '@/components/form/inputs/Datepicker'
+  
   const MyComponent = () => (
-    <RcSesTextField label="${label}" slotProps=${slotProps.wrapper.labelOnTop ? '{{ wrapper: { labelOnTop: true } }}' : '{{ wrapper: { labelOnTop: false} }}'} disabled="${disabled}" />
+  
+  const {control,formState: { errors }} = useForm<SingleStepFormModel>({mode: 'all',defaultValues: {date: null}})
+
+     <RcSesDatepicker
+        id='date'
+        name='date'
+        clearable=${clearable}
+        control={control}
+        rules=${rules.required ? '{{ required: true }}' : '{{ required: false }}'}
+        label='${label}'
+        errors={errors?.date}
+      />
+
   );`
 }
 
 export const Main = Template.bind({})
 Main.args = {
-  label: 'label',
-  disabled: false,
-  slotProps: { wrapper: { labelOnTop: false } },
+  clearable: true,
+  label: 'Terminas',
+  rules: { required: true },
 }
 
 Main.parameters = {
