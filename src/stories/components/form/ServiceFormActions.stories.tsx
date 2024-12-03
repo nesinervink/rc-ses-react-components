@@ -1,11 +1,8 @@
-import { Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryContext, StoryFn } from '@storybook/react'
 
-import RcSesAlert from '@/components/common/Alert'
 import RcSesServiceFormActions from '@/components/layout/ServiceFormActions'
-import FieldPreview from '@/components/storybook/FieldPreview'
 import FieldView from '@/components/storybook/FieldView'
 import Fields from '@/components/storybook/Fields'
-import PreviewTitle from '@/components/storybook/PreviewTitle'
 
 const lorem =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard."
@@ -26,5 +23,27 @@ const Template: StoryFn<typeof RcSesServiceFormActions> = (args) => (
   </Fields>
 )
 
+const codeBlock = (args: any) => {
+  return `
+  import RcSesServiceFormActions from '@/components/layout/ServiceFormActions'
+  
+  const MyComponent = () => (
+    <RcSesServiceFormActions/>
+  );`
+}
+
 export const Main = Template.bind({})
-Main.args = {}
+Main.args = {
+ 
+}
+
+Main.parameters = {
+  docs: {
+    source: {
+      type: 'dynamic',
+      transform: (code: string, storyContext: StoryContext) => {
+        return codeBlock(storyContext.args)
+      },
+    },
+  },
+}

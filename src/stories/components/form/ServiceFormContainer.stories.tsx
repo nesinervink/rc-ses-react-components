@@ -1,13 +1,16 @@
-import { Meta, StoryFn } from '@storybook/react'
-import { useForm } from 'react-hook-form'
+import { Meta, StoryContext, StoryFn } from '@storybook/react';
+import { useForm } from 'react-hook-form';
 
-import RcSesAccordion from '@/components/common/Accordion'
-import useAccordionController from '@/components/common/Accordion/hooks/useAccordionController'
-import RcSesServiceFormContainer from '@/components/layout/ServiceFormContainer'
-import FieldView from '@/components/storybook/FieldView'
-import Fields from '@/components/storybook/Fields'
-import BasicInformationForm from '@/examples/MultipleStepForm/components/BasicInformationForm'
-import SingleStepFormModel from '@/examples/SingleStepForm/types/SingleStepFormModel'
+
+
+import RcSesAccordion from '@/components/common/Accordion';
+import useAccordionController from '@/components/common/Accordion/hooks/useAccordionController';
+import RcSesServiceFormContainer from '@/components/layout/ServiceFormContainer';
+import FieldView from '@/components/storybook/FieldView';
+import Fields from '@/components/storybook/Fields';
+import BasicInformationForm from '@/examples/MultipleStepForm/components/BasicInformationForm';
+import SingleStepFormModel from '@/examples/SingleStepForm/types/SingleStepFormModel';
+
 
 const meta: Meta<typeof RcSesServiceFormContainer> = {
   title: 'components/common/form/ServiceFormContainer',
@@ -70,33 +73,6 @@ const Template: StoryFn<typeof RcSesServiceFormContainer> = (args) => {
     },
   })
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm<SingleStepFormModel>({
-    mode: 'all',
-    defaultValues: {
-      text: '',
-      multilineText: '',
-      selection: '',
-      phoneNo: '',
-      searchable: '',
-      date: null,
-      dateInterval: '',
-      countable: 0,
-      agreement: '',
-      fileUpload: '',
-      anotherShortText: '',
-      radioSelection1: '',
-      radioSelection2: '',
-      radioSelection3: '',
-      radioSelection4: '',
-      fileUploadMulti: '',
-    },
-  })
-
   return (
     <Fields>
       <FieldView>
@@ -123,17 +99,88 @@ const Template: StoryFn<typeof RcSesServiceFormContainer> = (args) => {
           <RcSesAccordion id='termsAndConditions' controller={accordionController}>
             <BasicInformationForm />
           </RcSesAccordion>
-
-          {/* <ServiceFormActions
-          onDiscard={() => navigate('/')}
-          onSaveDraft={() => navigate('/')}
-          onSubmit={() => navigate('/')}
-        /> */}
         </RcSesServiceFormContainer>
       </FieldView>
     </Fields>
   )
 }
 
+const codeBlock = (args: any) => {
+  const { label, disabled, slotProps } = args
+  return `
+  import RcSesSelect from '@/components/form/inputs/Select'
+  
+
+  const MyComponent = () => (
+
+  const accordionController = useAccordionController({
+    initialState: {
+      basicInformation: {
+        expanded: false,
+        state: 'completed',
+        title: 'Bazinė informacija',
+      },
+      serviceDetails: {
+        expanded: true,
+        state: 'active',
+        title: 'Paslaugos užsakymas',
+      },
+      serviceIssuance: {
+        expanded: false,
+        state: 'pending',
+        title: 'Išdavimas',
+      },
+      additionalServices: {
+        expanded: false,
+        state: 'pending',
+        title: 'Reikalingos papildomos paslaugos',
+      },
+      termsAndConditions: {
+        expanded: false,
+        state: 'pending',
+        title: 'Terminai ir sąlygos',
+      },
+    },
+  })
+
+    <RcSesServiceFormContainer
+      accordionController={accordionController}
+      slotProps={{ container: { maxWidth: 'md' } }}
+    >
+      <RcSesAccordion id='basicInformation' controller={accordionController}>
+        <BasicInformationForm />
+      </RcSesAccordion>
+
+      <RcSesAccordion id='serviceDetails' controller={accordionController}>
+        <BasicInformationForm />
+      </RcSesAccordion>
+
+      <RcSesAccordion id='serviceIssuance' controller={accordionController}>
+        <BasicInformationForm />
+      </RcSesAccordion>
+
+      <RcSesAccordion id='additionalServices' controller={accordionController}>
+        <BasicInformationForm />
+      </RcSesAccordion>
+
+      <RcSesAccordion id='termsAndConditions' controller={accordionController}>
+        <BasicInformationForm />
+      </RcSesAccordion>
+    </RcSesServiceFormContainer>
+  );`
+}
+
 export const Main = Template.bind({})
-Main.args = {}
+Main.args = {
+}
+
+Main.parameters = {
+  docs: {
+    source: {
+      type: 'dynamic',
+      transform: (code: string, storyContext: StoryContext) => {
+        return codeBlock(storyContext.args)
+      },
+    },
+  },
+}
