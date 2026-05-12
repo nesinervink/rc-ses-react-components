@@ -29,6 +29,7 @@ import RcSesCheckboxFormControl from '@/components/form/inputs/CheckboxFormContr
 import RcSesDatepicker from '@/components/form/inputs/Datepicker'
 import RcSesFileDropzone from '@/components/form/inputs/FileDropzone'
 import RcSesFileUpload from '@/components/form/inputs/FileUpload'
+import RcSesFormControlLabel from '@/components/form/inputs/FormControlLabel'
 import RcSesNumberStepper from '@/components/form/inputs/NumberStepper'
 import RcSesPhoneInput from '@/components/form/inputs/PhoneInput'
 import RcSesPhoneInputFormControl from '@/components/form/inputs/PhoneInputFormControl'
@@ -85,6 +86,7 @@ export { RcSesTextField }
 export { DataPagination }
 export { ListWithIcons }
 export { ServiceWizardStepper }
+export { RcSesFormControlLabel }
 export { SelectableCardList }
 export type * from './types'
 export type { SnackbarSize, SnackbarState } from '@/components/common/Snackbar/types'
