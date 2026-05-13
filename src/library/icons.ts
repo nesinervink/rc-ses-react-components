@@ -14,6 +14,7 @@ import CaretLeftIcon from '@/assets/icons/CaretLeftIcon'
 import CaretRightBoldIcon from '@/assets/icons/CaretRightBoldIcon'
 import CheckBoldIcon from '@/assets/icons/CheckBoldIcon'
 import CheckCircleFillIcon from '@/assets/icons/CheckCircleFillIcon'
+import CheckIcon from '@/assets/icons/CheckIcon'
 import CheckUncheckedBoldIcon from '@/assets/icons/CheckUncheckedBoldIcon'
 import CircleFilledIcon from '@/assets/icons/CircleFilledIcon'
 import CloseIcon from '@/assets/icons/CloseIcon'
@@ -30,6 +31,8 @@ import QuestionFillIcon from '@/assets/icons/QuestionFillIcon'
 import QuestionIcon from '@/assets/icons/QuestionIcon'
 import ScalesIcon from '@/assets/icons/ScalesIcon'
 import ScrollIcon from '@/assets/icons/ScrollIcon'
+import SearchHelpIcon from '@/assets/icons/SearchHelpIcon'
+import SearchXIcon from '@/assets/icons/SearchXIcon'
 import SpinnerGapBoldIcon from '@/assets/icons/SpinnerGapBoldIcon'
 import UploadSimpleIcon from '@/assets/icons/UploadSimpleIcon'
 import WarningCircleIcon from '@/assets/icons/WarningCircleIcon'
@@ -54,6 +57,7 @@ export {
   CaretRightBoldIcon,
   CheckBoldIcon,
   CheckCircleFillIcon,
+  CheckIcon,
   CheckUncheckedBoldIcon,
   CircleFilledIcon,
   CloseIcon,
@@ -70,6 +74,8 @@ export {
   QuestionIcon,
   ScalesIcon,
   ScrollIcon,
+  SearchHelpIcon,
+  SearchXIcon,
   SpinnerGapBoldIcon,
   UploadSimpleIcon,
   WarningDiamondFillIcon,

@@ -3,16 +3,24 @@ import React from 'react'
 
 import RcSesBreadcrumbs from '@/components/common/Breadcrumbs'
 import theme from '@/theme/light'
-import Colors from '@/theme/palette'
+import Colors, { common } from '@/theme/palette'
 
 type Props = {
   breadcrumbsProps: React.ComponentProps<typeof RcSesBreadcrumbs>
   children?: React.ReactNode
   title: string
+  backgroundColor?: 'primary' | 'white'
 }
-function ServiceHeader({ breadcrumbsProps, children, title }: Props) {
+function ServiceHeader({
+  breadcrumbsProps,
+  children,
+  title,
+  backgroundColor = 'primary',
+}: Props) {
+  const bgColor = backgroundColor === 'white' ? common.white : Colors.primary['50']
+
   return (
-    <Box sx={{ backgroundColor: Colors.primary['50'] }}>
+    <Box sx={{ backgroundColor: bgColor }}>
       <Container
         sx={{
           pb: { xs: '2rem', md: '2.25rem' },
@@ -23,14 +31,19 @@ function ServiceHeader({ breadcrumbsProps, children, title }: Props) {
           flexDirection: 'column',
         }}
       >
-        <Box sx={{ mb: { xs: '.875rem', md: '.375rem' } }}>
-          <RcSesBreadcrumbs {...breadcrumbsProps} />
-        </Box>
+        <RcSesBreadcrumbs
+          {...breadcrumbsProps}
+          sx={{
+            pb: { xs: '.25rem', md: '.5rem' },
+            fontSize: '0.75rem',
+            lineHeight: '1.25rem',
+          }}
+        />
 
         <Typography
           variant='h1'
           sx={{
-            lineHeight: { xs: '2rem', md: '2.125rem' },
+            lineHeight: { xs: '2rem', md: '2.5rem' },
           }}
         >
           {title}
@@ -45,7 +58,8 @@ function ServiceHeader({ breadcrumbsProps, children, title }: Props) {
               rowGap: '10px',
 
               '.MuiTypography-body1': {
-                lineHeight: '1.3125rem',
+                fontSize: '1rem',
+                lineHeight: '1.5rem',
 
                 [theme.breakpoints.down('md')]: {
                   fontSize: '.8125rem',
