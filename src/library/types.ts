@@ -1,3 +1,7 @@
+import {
+  RcSesLoadingSpinnerProps,
+  RcSesSpinnerColor,
+} from '@/components/LoadingSpinner/LoadingSpinner'
 import { RcSesCardProps } from '@/components/common/Card'
 import { ListWithIconsProps } from '@/components/common/ListWithIcons'
 import { ListWithIconsItemData } from '@/components/common/ListWithIcons/ListWithIcons.types'
@@ -16,4 +20,6 @@ export type {
   ServiceWizardStepperProps,
   SimpleCheckboxProps,
   RcSesFormControlLabelProps,
+  RcSesLoadingSpinnerProps,
+  RcSesSpinnerColor,
 }

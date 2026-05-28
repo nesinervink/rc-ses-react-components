@@ -3,6 +3,7 @@ import type {} from '@mui/system'
 import type {} from '@mui/x-date-pickers/themeAugmentation'
 
 import RcSesIconProps from '@/assets/IconProps'
+import RcSesLoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner'
 import RcSesAccordion from '@/components/common/Accordion'
 import useAccordionController from '@/components/common/Accordion/hooks/useAccordionController'
 import RcSesAlert from '@/components/common/Alert'
@@ -64,6 +65,7 @@ export {
   RcSesBreadcrumbs,
   RcSesButton,
   RcSesButtonWithPopover,
+  RcSesLoadingSpinner,
   RcSesCard,
   RcSesFooter,
   RcSesImageCard,
