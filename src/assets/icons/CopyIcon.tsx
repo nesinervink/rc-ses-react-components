@@ -1,16 +1,16 @@
-import { WarningIcon as Warning } from '@phosphor-icons/react'
+import { CopyIcon as CopyFillIcon } from '@phosphor-icons/react'
 
 import IconProps from '../IconProps'
 
-function WarningFillIcon({
+function CopyIcon({
   className,
-  size = 24,
   fillColor,
-  weight = 'fill',
+  size = 24,
+  weight = 'regular',
   ...rest
 }: IconProps) {
   return (
-    <Warning
+    <CopyFillIcon
       {...rest}
       className={className}
       size={size}
@@ -19,4 +19,5 @@ function WarningFillIcon({
     />
   )
 }
-export default WarningFillIcon
+
+export default CopyIcon
